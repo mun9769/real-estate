@@ -22,8 +22,9 @@ driver.find_element_by_xpath("//*[@id=\"main_btn\"]/a/img").click()
 
 items = []
 sum = 0
-for i in range(1,10):
-
+i = 1
+s = 2
+while True:
     item0 = driver.find_elements_by_class_name("Ltbl_list_lvl0")
     item1 = driver.find_elements_by_class_name("Ltbl_list_lvl1")
     sum += len(item0 + item1)
@@ -33,14 +34,19 @@ for i in range(1,10):
     children = page[0].find_elements_by_tag_name("a")
     # print(len(children))
     # print(children[0].find_element_by_tag_name("span").text)
-    if i == 1:
-        children[0].click()
-    else :
-        children[i].click()
-
-# page = driver.find_elements_by_class_name("page2")
-# children = page[0].find_elements_by_tag_name("a")
-# print(children[1].find_element_by_tag_name("span").text)
+    try:
+        if i == 1:
+            children[0].click()
+        elif i > 1 and i < 11 :
+            children[i].click()
+        else :
+            children[s].click()
+    except:
+        break
+    i += 1
+    s += 1 
+    if s > 11 :
+        s = 2
 
 
 
